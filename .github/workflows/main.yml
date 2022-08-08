@@ -1,13 +1,23 @@
+name: Release
+
 on:
-  pull_request:
-    types:
-      - labeled
+    workflow_run:
+        workflows: ["Build bump tag"]
+        types:
+            - completed
 jobs:
-  add-comment:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: evil-author/add-comment@main
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          comment: "Thanks for the PR! I've tagged this for the next major release as it has some backwards compatability breaks"
-          label: "semver:major"
+    publish-gpr:
+        runs-on: ubuntu-latest
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        permissions:
+            packages: write
+            contents: read
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v2
+              with:
+                  node-version: 12
+                  registry-url: https://npm.pkg.github.com/
+            - run: npm publish
+              env:
+                  NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
