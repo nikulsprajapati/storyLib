@@ -2,7 +2,7 @@
  "name": "story-book-library",
   "version": "0.0.0",
   "publishConfig": {
-    "@nikulsprajapati:registry": "https://npm.pkg.github.com/@nikulsprajapati"
+    "registry": "https://npm.pkg.github.com/@nikulsprajapati"
   },
   "repository": {
     "type": "git",
