@@ -1,6 +1,7 @@
 {
-  "name": "story-book-library",
-  "version": "0.0.0",
+ "name": "story-book-library",
+  "repository": "story-book-library/lock",
+  "version": "1.0.0",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@nikulsprajapati"
   },
