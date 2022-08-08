@@ -1,20 +1,13 @@
+on:
+  pull_request:
+    types:
+      - labeled
 jobs:
-  test:
-    name: Test on node ${{ matrix.node_version }} and ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        node_version: ['8', '10', '12']
-        os: [ubuntu-latest, windows-latest, macOS-latest]
-
+  add-comment:
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node_version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node_version }}
-
-    - name: npm install, build and test
-      run: |
-        npm install
-        npm run build --if-present
+      - uses: evil-author/add-comment@main
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          comment: "Thanks for the PR! I've tagged this for the next major release as it has some backwards compatability breaks"
+          label: "semver:major"
