@@ -1,36 +1,23 @@
-name: Build bump tag
+name: "🚀 release"
 
 on:
-    push:
-        branches:
-            - "master"
+    release:
+        types: [published]
 
 jobs:
-    install-and-test:
+    release:
+        name:  release
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v2
-            - uses: actions/setup-node@v2
+            - name:  checkout
+              uses: actions/checkout@v2.1.1
+            - name:  node
+              uses: actions/setup-node@v1.4.2
               with:
                   node-version: 12
-            - run: npm i -g husky
-            - run: npm ci
-            - run: npm test
-    tag-and-bump:
-        if: "!startsWith(github.event.head_commit.message, 'bump:')"
-        needs: install-and-test
-        runs-on: ubuntu-latest
-        name: "Bump version and create changelog with commitizen"
-        steps:
-            - name: Check out
-              uses: actions/checkout@v2
-              with:
-                fetch-depth: 0
-                token: "${{ secrets.GITHUB_TOKEN }}"
-            - id: cz
-              name: Bump package
-              uses: commitizen-tools/commitizen-action@master
-              with:
-               github_token: ${{ secrets.GITHUB_TOKEN }}
-            - name: Print Version
-              run: echo "Bumped to version ${{ steps.cz.outputs.version }
+                  registry-url: https://registry.npmjs.org
+            - name:  publish
+              run: npm publish --access public
+              working-directory: my-package
+              env:
+                  NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
