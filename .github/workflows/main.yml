@@ -1,4 +1,4 @@
-name: "🚀 release"
+name: "release"
 
 on:
     release:
