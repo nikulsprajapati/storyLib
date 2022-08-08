@@ -1,0 +1,58 @@
+
+<div class="profile-page main-content">
+    <div class="card-container">
+        <div class="card-component">
+            <form class="k-form k-form-horizontal" style="max-width: 700px" [formGroup]="formGroup">
+                <fieldset class="k-form-fieldset">
+
+                    <kendo-formfield orientation="horizontal">
+                        <kendo-label class="k-label" [for]="firstName" [text]="'First Name'"> </kendo-label>
+                        <kendo-textbox formControlName="firstName" [clearButton]="true" #firstName required>
+                        </kendo-textbox>
+                        <kendo-formerror> Error: First Name is required </kendo-formerror>
+                    </kendo-formfield>
+
+                    <kendo-formfield orientation="horizontal">
+                        <kendo-label [for]="lastName" [text]="'Last Name'"> </kendo-label>
+                        <kendo-textbox formControlName="lastName" [clearButton]="true" #lastName required>
+                        </kendo-textbox>
+                        <kendo-formerror> Error: Last Name is required </kendo-formerror>
+                    </kendo-formfield>
+
+                    <kendo-formfield orientation="horizontal">
+                        <kendo-label [for]="email" [text]="'Email'"> </kendo-label>
+                        <kendo-textbox formControlName="email" [clearButton]="true" #email required> </kendo-textbox>
+                        <kendo-formerror
+                            *ngIf="formGroup.controls['email'].errors && formGroup.controls['email'].errors['required']">
+                            Error: Email is required </kendo-formerror>
+                        <kendo-formerror
+                            *ngIf="formGroup.controls['email'].errors && formGroup.controls['email'].errors['email']">
+                            Error: Not valid email format </kendo-formerror>
+                    </kendo-formfield>
+
+                    <kendo-formfield orientation="horizontal">
+                        <kendo-label [for]="country" [text]="'Country'"> </kendo-label>
+                        <kendo-autocomplete #country [data]="countries" formControlName="country" [valueField]="'name'"
+                            [placeholder]="'e.g. Denmark'">
+                        </kendo-autocomplete>
+                    </kendo-formfield>
+
+
+                    <hr />
+                    <div class="k-form-buttons">
+                        <button kendoButton (click)="cancelChanges()">
+                            cancel
+                        </button>
+                        
+                        <button kendoButton  [primary]="true" [disabled]="formGroup.invalid || formGroup.pristine"
+                            (click)="saveChanges()">
+                            saveChanges
+                        </button>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    
+

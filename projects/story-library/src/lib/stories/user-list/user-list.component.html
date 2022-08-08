@@ -1,0 +1,41 @@
+<div style="margin-top: 20px;">
+
+    <form novalidate #myForm="ngForm">
+    <kendo-grid [kendoGridBinding]="gridData" (save)="saveHandler($event)" [pageSize]="10" [pageable]="true" [sortable]="true"
+    [kendoGridTemplateEditing]="updateUser" [filterable]="false" [groupable]="false" [height]="420">
+        <kendo-grid-column field="firstName" [width]="140">
+            <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+                <input [(ngModel)]="dataItem.firstName" kendoGridFocusable name="firstName" class="k-textbox" required/>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="lastName" [width]="120">
+            <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+                <input [(ngModel)]="dataItem.lastName" kendoGridFocusable name="lastName" class="k-textbox" required/>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="email" [width]="100">
+            <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+                <input [(ngModel)]="dataItem.email" kendoGridFocusable name="email" class="k-textbox" required/>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="country" [width]="130">
+            <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+                <input [(ngModel)]="dataItem.country" kendoGridFocusable name="country" class="k-textbox" required/>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-command-column title="action" [width]="220">
+            <ng-template kendoGridCellTemplate let-isNew="isNew">
+                <button kendoGridEditCommand type="button" [primary]="true">
+                    Edit
+                </button>
+                <button kendoGridSaveCommand type="button">
+                    {{ isNew ? "Add" : "Update" }}
+                </button>
+                <button kendoGridCancelCommand type="button">
+                    {{ isNew ? "Discard changes" : "Cancel" }}
+                </button>
+            </ng-template>
+        </kendo-grid-command-column>
+    </kendo-grid>
+    </form>
+</div>
