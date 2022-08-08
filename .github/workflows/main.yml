@@ -15,7 +15,6 @@ jobs:
                   node-version: 16.14.0
             - run: npm i -g husky
             - run: npm ci
-            - run: npm test
     tag-and-bump:
         if: "!startsWith(github.event.head_commit.message, 'bump:')"
         needs: install-and-test
