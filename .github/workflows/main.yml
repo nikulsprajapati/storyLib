@@ -18,7 +18,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         registry-url: https://npm.pkg.github.com/
-        scope: "@nikulsprajapati"
+        scope: "@nikulsprajapati/story-book-library"
     - name: Installing Tree
       run: sudo apt-get install tree
     - name: Showing Tree
