@@ -3,7 +3,7 @@
   "version": "5.1.1",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@nikulsprajapati"
-  }
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
