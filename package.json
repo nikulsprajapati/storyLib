@@ -1,13 +1,9 @@
 {
  "name": "@nikulsprajapati/story-book-library-new",
-  "version": "4.1.1",
+  "version": "5.1.1",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@nikulsprajapati"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/nikulsprajapati/storyLib.git"
-  },
+  }
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
